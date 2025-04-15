@@ -7,7 +7,7 @@ https://www.hackerrank.com/challenges/ctci-ice-cream-parlor/problem?isFullScreen
 Each time Sunny and Johnny take a trip to the Ice Cream Parlor, they pool their money to buy ice cream. 
 On any given day, the parlor offers a line of flavors. Each flavor has a cost associated with it.
 
-Given the value of  and the  of each flavor for  trips to the Ice Cream Parlor, help Sunny and Johnny choose
+Given the value of each flavor to the Ice Cream Parlor, help Sunny and Johnny choose
 two distinct flavors such that they spend their entire pool of money during each visit. ID numbers are the 
 1- based index number associated with a . For each trip to the parlor, print the ID numbers for the two types 
 of ice cream that Sunny and Johnny purchase as two space-separated integers on a new line. 
@@ -20,6 +20,10 @@ Example:
     Purhcase flavour 1 and 3 (2 + 3 = 5)
 
 """
+
+import numpy as np
+
+'''
 def whatFlavours(cost,money):
     for indexX,valueX in enumerate(cost):
         for indexY,valueY in enumerate(cost):
@@ -31,7 +35,29 @@ def whatFlavours(cost,money):
                 print(str(indexX+1) + ' ' + str(indexY+1))
                 return
 
-cost = [2,1,3,5,6]
-money = 4
+'''
+def whatFlavours(cost,money):
+    
+    prices = set(cost)
+    
+    for index,value in enumerate(cost):
+        if (money - value) in prices and (money-value) != value:
+            print(str(index+1))
+            print(str(np.where(cost == (money-value))[0][0]+1))
+            return
+
+
+cost = []
+for i in range(2**12):
+    cost.append(int(1))
+    
+cost.append(int(2))
+cost.append(int(3))
+cost.append(int(5))
+cost.append(int(6))
+
+
+cost = np.array(cost)
+money = 8
 
 whatFlavours(cost,money)
