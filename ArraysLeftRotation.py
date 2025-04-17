@@ -37,33 +37,16 @@ import numpy
 rotationLeftNumber = 4
 arrayLengthInteger = 5
 
+#Create numbers array (since it is not provided)
 array = numpy.array([],dtype = int)
 
 for i in range(1,arrayLengthInteger+1):
-    print(i)
     array = numpy.append(array,i)
 
-newArray = [array[rotationLeftNumber::]]
+#Join the two separate parts of array together
+newArray = numpy.append(array[rotationLeftNumber:], array[0:rotationLeftNumber])
 
-newArray = numpy.append(newArray,array[0:rotationLeftNumber])
-
-
-# Map applies the same logic to each element into array forming a map object. 
-# For example, here it is converting all elements to string. 
-# Can square values using "lambda x: x**2"
-# Can convert to array if using np.array(list(____)). 
-# Join function joins all elements in array by the designiated character - here " "
+#Print string out
 ArrayString = ' '.join(map(str,newArray))
-
-'''
-ArrayString = ""
-for index,value in enumerate(newArray):
-    
-    ArrayString += str(int(value))
-    
-    if index != len(newArray):
-        
-        ArrayString += " "
-'''
 print(ArrayString)
         

@@ -41,12 +41,16 @@ def whatFlavours(cost,money):
     prices = set(cost)
     
     for index,value in enumerate(cost):
-        if (money - value) in prices and (money-value) != value:
-            print(str(index+1))
-            print(str(np.where(cost == (money-value))[0][0]+1))
-            return
+        if (money - value) in prices:
+            
+            for indexOther,valueOther in enumerate(cost):
+                if valueOther == (money-value) and index != indexOther:
+                    print(str(index+1) + ' ' + str(indexOther+1))
+                    return
 
 
+
+'''
 cost = []
 for i in range(2**12):
     cost.append(int(1))
@@ -55,7 +59,8 @@ cost.append(int(2))
 cost.append(int(3))
 cost.append(int(5))
 cost.append(int(6))
-
+'''
+cost = [4,3,2,5,7]
 
 cost = np.array(cost)
 money = 8
